@@ -13,13 +13,13 @@ final class DatabaseManager {
     
     private let database = Firestore.firestore()
     private init(){}
-    public func intser(
+    public func insert(
         blogPost:BlogPost,
         user:String,
         completion:@escaping(Bool)->Void
     )
     {
-    
+        
         
     }
     
@@ -27,7 +27,7 @@ final class DatabaseManager {
         completion:@escaping([BlogPost])->Void
     )
     {
-    
+        
         
     }
     public func gePost(
@@ -35,16 +35,28 @@ final class DatabaseManager {
         completion:@escaping([BlogPost])->Void
     )
     {
-    
+        
         
     }
-    public func inser(
+    public func insert(
         user:User,
         completion:@escaping(Bool)->Void
     )
     {
-    
+        let documentId = user.email
+        .replacingOccurrences(of: ".", with: "_")
+        .replacingOccurrences(of: "@", with: "_")
+        let data = ["email":user.email,
+                    "name" : user.name
+        ]
         
+        database
+            .collection("Users")
+            .document(documentId)
+            .setData(data) {error in
+                completion(error == nil)
+                
+            }
     }
 }
 

@@ -87,14 +87,14 @@ class SignInViewController: UITabBarController {
             guard success else {
                 return
             }
-                DispatchQueue.main.async {
-                    UserDefaults.standard.set(email, forKey: "email")
-                    let vc = TabBarViewController()
-                    vc.modalPresentationStyle = .fullScreen
-                    self?.present(vc, animated: true)
-                }
+            DispatchQueue.main.async {
+                UserDefaults.standard.set(email, forKey: "email")
+                let vc = TabBarViewController()
+                vc.modalPresentationStyle = .fullScreen
+                self?.present(vc, animated: true)
             }
         }
+    }
     
     @objc func didTapCreateAccount(){
         let vc  = SignUpViewController()
@@ -103,4 +103,4 @@ class SignInViewController: UITabBarController {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-    
+
